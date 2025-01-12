@@ -1,0 +1,207 @@
+<ui:UiPage
+    x:Class="Wpf.Ui.Demo.Views.Pages.Data"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Wpf.Ui.Demo.Views.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:Wpf.Ui.Demo.Views.Pages"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
+    xmlns:persianDateControls="clr-namespace:Mohsen.PersianDateControls;assembly=Mohsen.PersianDateControls"
+    Title="Data"
+    d:DesignHeight="900"
+    d:DesignWidth="1280"
+    Scrollable="False"
+    FlowDirection="RightToLeft"
+    mc:Ignorable="d">
+    <!--d:DataContext="{d:DesignInstance local:Data,
+                                     IsDesignTimeCreatable=False}"-->
+
+    <Grid 
+        Grid.Row="1" 
+        VerticalAlignment="Center" 
+        HorizontalAlignment="Center" 
+        Width="800"
+        Margin="12,18,12,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ui:CardAction
+            Name="GeneralReport"
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="0,4,4,0"
+            Command="{Binding ViewModel.NavigateCommand}"
+            CommandParameter="navigate_to_GeneralReport"
+            Icon="DatabaseMultiple20"
+            IconForeground="BlueViolet">
+            <StackPanel>
+                <TextBlock
+                    Name="GeneralReportTitle"
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="گزارش عمومی" />
+                <TextBlock
+                    FontSize="12"
+                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                    Text="گزارش کلی ترددها" />
+            </StackPanel>
+        </ui:CardAction>
+
+        <ui:CardAction
+            Name="InsideTraffic"
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="0,4,4,0"
+            Command="{Binding ViewModel.NavigateCommand}"
+            CommandParameter="navigate_to_InsideTraffic"
+            IconForeground="BlueViolet"
+            Icon="DatabaseSearch24">
+            <StackPanel>
+                <TextBlock
+                    Name="InsideTrafficTitle"
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="خودروهای درون مجموعه" />
+                <TextBlock
+                    FontSize="12"
+                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                    Text="ترددهای ورودی خارج نشده" />
+            </StackPanel>
+        </ui:CardAction>
+
+        <ui:CardAction
+            Name="LicensedVehicles"
+            Grid.Row="3"
+            Margin="0,4,4,0"
+            Command="{Binding ViewModel.NavigateCommand}"
+            CommandParameter="navigate_to_LicensedVehicles"
+            Icon="PeopleCheckmark24">
+            <StackPanel>
+                <TextBlock
+                    Name="LicensedVehiclesTitle"
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="خودروهای دارای مجوز مجاز" />
+            </StackPanel>
+        </ui:CardAction>
+        <ui:CardAction
+            Name="UnlicensedVehicles"
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="0,4,4,0"
+            Command="{Binding ViewModel.NavigateCommand}"
+            CommandParameter="navigate_to_UnlicensedVehicles"
+            Icon="TagDismiss24">
+            <StackPanel>
+                <TextBlock
+                    Name="UnlicensedVehiclesTitle"
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="خودروهای بدون مجوز" />
+            </StackPanel>
+        </ui:CardAction>
+        <ui:CardAction
+            Name="UnauthorizedVehicles"
+            Grid.Row="4"
+            Margin="0,4,4,0"
+            Command="{Binding ViewModel.NavigateCommand}"
+            CommandParameter="navigate_to_UnauthorizedVehicles"
+            Icon="ShieldDismiss24">
+            <StackPanel>
+                <TextBlock
+                    Name="UnauthorizedVehiclesTitle"
+                    Margin="0"
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="خودروهای غیرمجاز" />
+            </StackPanel>
+        </ui:CardAction>
+        <ui:CardAction
+            Name="InsideUnauthorizedVehicles"
+            Grid.Row="4"
+            Margin="0,4,4,0"
+            Grid.Column="1"
+            Command="{Binding ViewModel.NavigateCommand}"
+            CommandParameter="navigate_to_InsideUnauthorizedVehicles"
+            Icon="ShieldDismiss24">
+            <StackPanel>
+                <TextBlock
+                    Name="InsideUnauthorizedVehiclesTitle"
+                    Margin="0"
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="خودروهای غیرمجاز درون مجموعه" />
+            </StackPanel>
+        </ui:CardAction>
+
+        <ui:CardAction
+            Name="GeneralStatisticChart"
+            Grid.Row="6"
+            Margin="0,4,4,0"
+            Visibility="Visible"
+            Command="{Binding ViewModel.NavigateCommand}"
+            CommandParameter="navigate_to_GeneralStatisticChart"
+            IconForeground="DeepSkyBlue"
+            Icon="DataArea24">
+            <StackPanel>
+                <TextBlock
+                    Margin="0"
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="آمار کلی" />
+            </StackPanel>
+        </ui:CardAction>
+        <ui:CardAction
+            Name="BarsStatisticChart"
+            Grid.Row="6"
+            Grid.Column="1"
+            Margin="0,4,4,0"
+            Visibility="Visible"
+            Command="{Binding ViewModel.NavigateCommand}"
+            CommandParameter="navigate_to_BarsStatisticChart"
+            IconForeground="DeepSkyBlue"
+            Icon="DataArea24">
+            <StackPanel>
+                <TextBlock
+                    Margin="0"
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="آمار بارها" />
+            </StackPanel>
+        </ui:CardAction>
+        
+        <ui:CardAction
+            Name="MissingProperties"
+            Grid.Row="8"
+            Visibility="Collapsed"
+            Margin="0,4,4,0"
+            Grid.ColumnSpan="2"
+            Icon="Database24">
+            <StackPanel>
+                <TextBlock
+                    Margin="0"
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Text="شماره اموال مفقودی" />
+                <TextBlock
+                    FontSize="12"
+                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                    Text="لیست اموال گمشده" />
+            </StackPanel>
+        </ui:CardAction>
+    </Grid>
+</ui:UiPage>

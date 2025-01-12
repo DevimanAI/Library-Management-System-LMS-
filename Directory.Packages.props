@@ -1,0 +1,43 @@
+<Project>
+  <ItemGroup>
+    <PackageVersion Include="Accord" Version="3.8.0" />
+    <PackageVersion Include="Azure.AI.Translation.Document" Version="1.0.0" />
+    <PackageVersion Include="ClosedXML" Version="0.102.2" />
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <PackageVersion Include="coverlet.collector" Version="3.2.0" />
+    <PackageVersion Include="DevExpress.Win.Design" Version="24.2.3" />
+    <PackageVersion Include="devexpress.wpf.controls" Version="24.2.3" />
+    <PackageVersion Include="devexpress.wpf.grid.core" Version="24.2.3" />
+    <PackageVersion Include="EntityFramework" Version="6.4.4" />
+    <PackageVersion Include="ExcelDataReader" Version="3.6.0" />
+    <PackageVersion Include="ExcelDataReader.DataSet" Version="3.6.0" />
+    <PackageVersion Include="ExcelNumberFormat" Version="1.1.0" />
+    <PackageVersion Include="LiveCharts" Version="0.9.7" />
+    <PackageVersion Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="1.1.1" />
+    <PackageVersion Include="Microsoft.VisualStudio.CoreUtility" Version="17.2.3194" />
+    <PackageVersion Include="Microsoft.VisualStudio.SDK" Version="17.3.32804.24" />
+    <PackageVersion Include="Microsoft.VSSDK.BuildTools" Version="17.4.2118" />
+    <PackageVersion Include="Microsoft.Web.WebView2" Version="1.0.1462.37" />
+    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+    <PackageVersion Include="Mohsen.PersianDateControls" Version="1.0.1" />
+    <PackageVersion Include="Moq" Version="4.18.4" />
+    <PackageVersion Include="NativeMethods" Version="0.0.3" />
+    <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageVersion Include="PersianDate" Version="3.5.5" />
+    <PackageVersion Include="PersianDatePicker" Version="1.1.0" />
+    <PackageVersion Include="PolySharp" Version="1.13.2" />
+    <PackageVersion Include="RtspClientSharp" Version="1.3.3" />
+    <PackageVersion Include="System.Data.SQLite" Version="1.0.118" />
+    <PackageVersion Include="WpfAnalyzers" Version="4.1.1" />
+    <PackageVersion Include="System.Drawing.Common" Version="8.0.0" />
+    <PackageVersion Include="System.ValueTuple" Version="4.5.0" />
+    <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.507" />
+    <PackageVersion Include="WpfAnimatedGif" Version="2.0.2" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5" />
+    <PackageVersion Include="xunit" Version="2.4.2" />
+  </ItemGroup>
+</Project>

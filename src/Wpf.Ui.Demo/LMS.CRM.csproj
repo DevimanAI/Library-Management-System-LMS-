@@ -1,0 +1,170 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+    <UseWPF>true</UseWPF>
+    <StartupObject>Wpf.Ui.Demo.App</StartupObject>
+    <ApplicationIcon>Resources\LMS Logo.ico</ApplicationIcon>
+    <AssemblyName>LMS - CRM</AssemblyName>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+    <Version>$(Version)</Version>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>AnyCPU;x64</Platforms>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="NewFolder\**" />
+    <Page Remove="NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Accord" />
+    <PackageReference Include="ClosedXML" />
+    <PackageReference Include="DevExpress.Win.Design" />
+    <PackageReference Include="devexpress.wpf.controls" />
+    <PackageReference Include="devexpress.wpf.grid.core" />
+    <PackageReference Include="EntityFramework" />
+    <PackageReference Include="ExcelDataReader" />
+    <PackageReference Include="ExcelDataReader.DataSet" />
+    <PackageReference Include="ExcelNumberFormat" />
+    <PackageReference Include="LiveCharts.Wpf" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="Mohsen.PersianDateControls" />
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="RtspClientSharp" />
+    <PackageReference Include="System.Data.SQLite" />
+    <PackageReference Include="System.Drawing.Common" />
+    <PackageReference Include="WpfAnimatedGif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Wpf.Ui\Wpf.Ui.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\AccessKey.png" />
+    <None Remove="Resources\DDORes_2169.ico" />
+    <None Remove="Resources\LMS - Header.gif" />
+    <None Remove="Resources\LMS Dashboard.gif" />
+    <None Remove="Resources\LMS Logo.ico" />
+    <None Remove="Resources\LMS Logo.png" />
+    <None Remove="Resources\LMS.gif" />
+    <None Remove="Resources\LMS.ico" />
+    <None Remove="Resources\Deviman.png" />
+    <None Remove="Resources\fluent-ui-microsoft.png" />
+    <None Remove="Resources\geo_icons.png" />
+    <None Remove="Resources\halo_infinite.jpg" />
+    <None Remove="Resources\History.png" />
+    <None Remove="Resources\info.ico" />
+    <None Remove="Resources\logout.png" />
+    <None Remove="Resources\master_chief.jpg" />
+    <None Remove="Resources\microsoft-icon-store.png" />
+    <None Remove="Resources\microsoft-icon-tips.png" />
+    <None Remove="Resources\microsoft-shell-accessibility.ico" />
+    <None Remove="Resources\microsoft-shell-colors.ico" />
+    <None Remove="Resources\microsoft-shell-computer.ico" />
+    <None Remove="Resources\microsoft-shell-desktop.ico" />
+    <None Remove="Resources\microsoft-shell-gallery.ico" />
+    <None Remove="Resources\microsoft-shell-info.ico" />
+    <None Remove="Resources\microsoft-shell-monitor.ico" />
+    <None Remove="Resources\microsoft-shell-settings.ico" />
+    <None Remove="Resources\microsoft-shell-star.ico" />
+    <None Remove="Resources\microsoft-shell-switch.ico" />
+    <None Remove="Resources\microsoft-shell-tablet.ico" />
+    <None Remove="Resources\microsoft-shell-user.ico" />
+    <None Remove="Resources\microsoft-shell-videos.ico" />
+    <None Remove="Resources\microsoft-shell-warning.ico" />
+    <None Remove="Resources\microsoft-shell-workspace.ico" />
+    <None Remove="Resources\pc.ico" />
+    <None Remove="Resources\profile.png" />
+    <None Remove="Resources\settings.ico" />
+    <None Remove="Resources\social.png" />
+    <None Remove="Resources\store.png" />
+    <None Remove="Resources\switch.ico" />
+    <None Remove="Resources\tablet.ico" />
+    <None Remove="Resources\test_icon.ico" />
+    <None Remove="Resources\the_witcher_wallpaper.jpg" />
+    <None Remove="Resources\tips.png" />
+    <None Remove="Resources\Tivaicon.png" />
+    <None Remove="Resources\Tivasanat  Animated Gif.gif" />
+    <None Remove="Resources\TivaSanat Dashboard No Brand.gif" />
+    <None Remove="Resources\TivaSanat.gif" />
+    <None Remove="Resources\user.ico" />
+    <None Remove="Resources\videos.ico" />
+    <None Remove="Resources\warning.ico" />
+    <None Remove="Resources\wpfui.png" />
+    <None Remove="Resources\wpfui_full.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\AccessKey.png" />
+    <Resource Include="Resources\LMS - Header.gif" />
+    <Resource Include="Resources\LMS Dashboard.gif" />
+    <Resource Include="Resources\LMS Logo.ico" />
+    <Resource Include="Resources\LMS Logo.png" />
+    <Resource Include="Resources\LMS.gif" />
+    <Resource Include="Resources\fluent-ui-microsoft.png" />
+    <Resource Include="Resources\geo_icons.png" />
+    <Resource Include="Resources\halo_infinite.jpg" />
+    <Resource Include="Resources\History.png" />
+    <Resource Include="Resources\logout.png" />
+    <Resource Include="Resources\master_chief.jpg" />
+    <Resource Include="Resources\microsoft-shell-accessibility.ico" />
+    <Resource Include="Resources\microsoft-shell-colors.ico" />
+    <Resource Include="Resources\microsoft-shell-gallery.ico" />
+    <Resource Include="Resources\microsoft-shell-monitor.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\microsoft-icon-store.png" />
+    <Resource Include="Resources\microsoft-shell-desktop.ico" />
+    <Resource Include="Resources\microsoft-shell-settings.ico" />
+    <Resource Include="Resources\microsoft-shell-workspace.ico" />
+    <Resource Include="Resources\profile.png" />
+    <Resource Include="Resources\social.png" />
+    <Resource Include="Resources\wpfui_full.png" />
+    <Resource Include="Resources\the_witcher_wallpaper.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Windows\ImportDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Pages\BasicDataTables\" />
+    <Folder Include="Views\Windows\Reports\" />
+  </ItemGroup>
+
+</Project>
