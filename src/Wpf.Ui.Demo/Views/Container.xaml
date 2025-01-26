@@ -89,11 +89,21 @@
                         CommandParameter="navigate_to_Reservations"
                         PageType="{x:Type pages:CRUD}"/>
                     <ui:NavigationItem
+                        Name="LibraryBranchesNavi"
+                        Cache="True"
+                        Content="شعب"
+                        Icon="Location24" 
+                        IconForeground="red" 
+                        Command="{Binding ViewModel.NavigateCommand}"
+                        CommandParameter="navigate_to_LibraryBranches"
+                        PageType="{x:Type pages:CRUD}"/>
+                    <ui:NavigationItem
                         Name="BorrowsNavi"
                         Content="واگذاری"
                         Icon="BookClock24"
                         IconForeground="red"
-                        Visibility="Visible" />
+                        Visibility="Visible"
+                        PageType="{x:Type pages:BorrowPage}" />
                 </ui:NavigationStore.Items>
                 <ui:NavigationStore.Footer>
                     <!--  A navigation element that does not point to the page can be used as a button.  -->
@@ -299,7 +309,7 @@
                     FocusOnLeftClick="True"
                     Icon="pack://application:,,,/Resources/LMS Logo.png"
                     MenuOnRightClick="True"
-                    TooltipText="Tiva Gate">
+                    TooltipText="LMS CRM">
                         <ui:NotifyIcon.Menu>
                             <ContextMenu>
                                 <!--<ui:MenuItem

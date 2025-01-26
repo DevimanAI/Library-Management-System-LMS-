@@ -272,7 +272,7 @@ public partial class Container : INavigationWindow
 
         _initialized = true;
 
-        WelcomeMessage.Text = $"{_activeUser.Username} به سامانه خوش آمدید!\nدر حال آماده سازی.";
+        WelcomeMessage.Text = $"{_activeUser.Username} به پنل کنترلی خوش آمدید!\nدر حال آماده سازی.";
         RootLoginGrid.Visibility = Visibility.Collapsed;
         RootWelcomeGrid.Visibility = Visibility.Visible;
 
@@ -282,8 +282,6 @@ public partial class Container : INavigationWindow
         {
             Logger.SaveLog($"ورود کاربر", System.Reflection.MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Events);
 
-            // Remember to always include Delays and Sleeps in
-            // your applications to be able to charge the client for optimizations later.
             List<Users> users = ViewModel.UsersInfoItemCollection.ToList();
             ViewModel.UsersInfoItemCollection = users;
 
@@ -295,37 +293,6 @@ public partial class Container : INavigationWindow
                 RootMainGrid.Visibility = Visibility.Visible;
 
                 LMS.CRM.Properties.Settings settings = new LMS.CRM.Properties.Settings();
-
-                Navigate(typeof(Pages.Dashboard));
-
-                _taskBarService.SetState(this, TaskBarProgressState.None);
-            });
-
-            return true;
-        });
-    }
-    private void InvokeSplashScreen_PageInitialize()
-    {
-        if (_initialized)
-            return;
-
-        _initialized = true;
-
-        RootLoginGrid.Visibility = Visibility.Collapsed;
-        RootWelcomeGrid.Visibility = Visibility.Visible;
-
-        _taskBarService.SetState(this, TaskBarProgressState.Indeterminate);
-
-        Task.Run(async () =>
-        {
-            // Remember to always include Delays and Sleeps in
-            // your applications to be able to charge the client for optimizations later.
-            await Task.Delay(4000);
-
-            await Dispatcher.InvokeAsync(() =>
-            {
-                RootWelcomeGrid.Visibility = Visibility.Hidden;
-                RootMainGrid.Visibility = Visibility.Visible;
 
                 Navigate(typeof(Pages.Dashboard));
 
@@ -349,8 +316,8 @@ public partial class Container : INavigationWindow
             return;
 
         System.Diagnostics.Debug.WriteLine(
-            $"DEBUG | Tiva.Gate Tray clicked: {menuItem.Tag}",
-            "Tiva.Gate"
+            $"DEBUG | LMS.CRM Tray clicked: {menuItem.Tag}",
+            "LMS.CRM"
         );
 
         System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
@@ -362,8 +329,8 @@ public partial class Container : INavigationWindow
             return;
 
         System.Diagnostics.Debug.WriteLine(
-            $"DEBUG | Tiva.Gate Tray clicked: {menuItem.Tag}",
-            "Tiva.Gate"
+            $"DEBUG | LMS.CRM Tray clicked: {menuItem.Tag}",
+            "LMS.CRM"
         );
 
         Application.Current.Shutdown();
@@ -372,8 +339,8 @@ public partial class Container : INavigationWindow
     private void RootNavigation_OnNavigated(INavigation sender, RoutedNavigationEventArgs e)
     {
         System.Diagnostics.Debug.WriteLine(
-            $"DEBUG | Tiva.Gate Navigated to: {sender?.Current ?? null}",
-            "Tiva.Gate"
+            $"DEBUG | LMS.CRM Navigated to: {sender?.Current ?? null}",
+            "LMS.CRM"
         );
 
         // This funky solution allows us to impose a negative

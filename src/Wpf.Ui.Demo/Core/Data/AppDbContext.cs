@@ -3,6 +3,7 @@
 // Copyright (C) Leszek Pomianowski and WPF UI Contributors.
 // All Rights Reserved.
 
+using DevExpress.XtraScheduler.Native;
 using DocumentFormat.OpenXml.Bibliography;
 using DocumentFormat.OpenXml.Drawing;
 using DocumentFormat.OpenXml.ExtendedProperties;
@@ -50,7 +51,7 @@ public class AppDbContext : DbContext
         Configuration.LazyLoadingEnabled = false;
         //Configuration.ProxyCreationEnabled = false;
     }
-
+    
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
         modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -83,13 +84,13 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Reservations>()
             .HasRequired(r => r.Member)
             .WithMany()
-            .HasForeignKey(r => r.MemberID)
+            .HasForeignKey(r => r.FK_MemberID)
             .WillCascadeOnDelete(false);
 
         modelBuilder.Entity<Reservations>()
             .HasRequired(r => r.Resource)
             .WithMany()
-            .HasForeignKey(r => r.ResourceID)
+            .HasForeignKey(r => r.FK_ResourceID)
             .WillCascadeOnDelete(false);
 
         base.OnModelCreating(modelBuilder);
@@ -125,7 +126,21 @@ public class AppDbContext : DbContext
     }
 
 
-
+    public static List<T> ReadAll<T>() where T : class
+    {
+        try
+        {
+            using (var context = new AppDbContext())
+            {
+                return context.Set<T>().ToList();
+            }
+        }
+        catch (Exception ex)
+        {
+            HandleError(ex);
+            return new List<T>();
+        }
+    }
     private static void HandleError(Exception ex)
     {
         if (IsTransientError(ex))
@@ -143,9 +158,6 @@ public class AppDbContext : DbContext
     {
         return ex is TimeoutException || ex is SqlException;
     }
-
-
-
 
     #region Users
     public static void UpdateUser(Users user)
@@ -198,6 +210,7 @@ public class AppDbContext : DbContext
             }
         }
     }
+
     public static void DeleteUser(Users user)
     {
         using (var context = new AppDbContext())
@@ -330,6 +343,204 @@ public class AppDbContext : DbContext
         catch (Exception ex)
         {
             HandleError(ex);
+        }
+    }
+
+    #endregion
+
+    #region Resources
+    public static void UpdateResource(Resources resource)
+    {
+        using (var context = new AppDbContext())
+        {
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var existingResource = context.Resources.SingleOrDefault(r => r.ResourceID == resource.ResourceID);
+                    if (existingResource == null)
+                    {
+                        Logger.SaveLog($"INSERTING Resource ID: {resource.ResourceID}", MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Info);
+                        context.Resources.Add(resource);
+                    }
+                    else
+                    {
+                        Logger.SaveLog($"UPDATING Resource ID: {existingResource.ResourceID}", MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Info);
+                        context.Entry(existingResource).CurrentValues.SetValues(resource);
+                    }
+
+                    context.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Logger.SaveLog(ex, MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Error);
+                }
+            }
+        }
+    }
+
+    public static void DeleteResource(Resources resource)
+    {
+        using (var context = new AppDbContext())
+        {
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var existingResource = context.Resources.SingleOrDefault(r => r.ResourceID == resource.ResourceID);
+                    if (existingResource != null)
+                    {
+                        Logger.SaveLog($"DELETING Resource ID: {existingResource.ResourceID}", MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Info);
+                        context.Resources.Remove(existingResource);
+                        context.SaveChanges();
+                        transaction.Commit();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Logger.SaveLog(ex, MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Error);
+                }
+            }
+        }
+    }
+    #endregion
+
+    #region Reservation
+    public static void UpdateReservation(Reservations reservation)
+    {
+        using (var context = new AppDbContext())
+        {
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var existingReservation = context.Reservations.SingleOrDefault(r => r.ReservationID == reservation.ReservationID);
+                    if (existingReservation == null)
+                    {
+                        Logger.SaveLog($"INSERTING Reservation ID: {reservation.ReservationID}", MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Info);
+                        context.Reservations.Add(reservation);
+                    }
+                    else
+                    {
+                        Logger.SaveLog($"UPDATING Reservation ID: {existingReservation.ReservationID}", MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Info);
+                        context.Entry(existingReservation).CurrentValues.SetValues(reservation);
+                    }
+
+                    context.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Logger.SaveLog(ex, MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Error);
+                }
+            }
+        }
+    }
+
+    public static void DeleteReservation(Reservations reservation)
+    {
+        using (var context = new AppDbContext())
+        {
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var existingReservation = context.Reservations.SingleOrDefault(r => r.ReservationID == reservation.ReservationID);
+                    if (existingReservation != null)
+                    {
+                        Logger.SaveLog($"DELETING Reservation ID: {existingReservation.ReservationID}", MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Info);
+                        context.Reservations.Remove(existingReservation);
+                        context.SaveChanges();
+                        transaction.Commit();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Logger.SaveLog(ex, MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Error);
+                }
+            }
+        }
+    }
+
+    #endregion
+
+    #region LibraryBranches
+    public static void UpdateLibraryBranches(LibraryBranches libraryBranches)
+    {
+        using (var context = new AppDbContext())
+        {
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var existingLibraryBranch = context.LibraryBranches.SingleOrDefault(lib => lib.BranchID == libraryBranches.BranchID);
+                    if (existingLibraryBranch == null)
+                    {
+                        Logger.SaveLog($"INSERTING LibraryBranches ID: {libraryBranches.BranchID}", MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Info);
+                        context.LibraryBranches.Add(libraryBranches);
+                    }
+                    else
+                    {
+                        Logger.SaveLog($"UPDATING LibraryBranches ID: {existingLibraryBranch.BranchID}", MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Info);
+                        context.Entry(existingLibraryBranch).CurrentValues.SetValues(libraryBranches);
+                    }
+
+                    context.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Logger.SaveLog(ex, MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Error);
+                }
+            }
+        }
+    }
+
+    public static List<LibraryBranches> FetchLibraryBranches()
+    {
+        try
+        {
+            using (var context = new AppDbContext())
+            {
+                return context.LibraryBranches.ToList();
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.SaveLog(ex, MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Error);
+            return null;
+        }
+    }
+
+    public static void DeleteLibraryBranches(LibraryBranches libraryBranches)
+    {
+        using (var context = new AppDbContext())
+        {
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var existingLibraryBranch = context.LibraryBranches.SingleOrDefault(lib => lib.BranchID == libraryBranches.BranchID);
+                    if (existingLibraryBranch != null)
+                    {
+                        Logger.SaveLog($"DELETING LibraryBranches ID: {existingLibraryBranch.BranchID}", MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Info);
+                        context.LibraryBranches.Remove(existingLibraryBranch);
+                        context.SaveChanges();
+                        transaction.Commit();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Logger.SaveLog(ex, MethodBase.GetCurrentMethod().Name, Logger.LogLevel.Error);
+                }
+            }
         }
     }
     #endregion

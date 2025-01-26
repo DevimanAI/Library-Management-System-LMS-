@@ -20,7 +20,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height=".4*" />
+            <RowDefinition Height=".9*" />
         </Grid.RowDefinitions>
 
 
@@ -66,6 +66,28 @@
                     Content="عملیات ها"
                     Foreground="{DynamicResource TextFillColorLightPrimaryBrush}" />
             </StackPanel>
+            <StackPanel
+                Margin="154"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                FlowDirection="LeftToRight"
+                Background="Transparent">
+                <Image
+                    HorizontalAlignment="Stretch"
+                    MaxHeight="200"
+                    Source="/Resources/LMS Logo.png" />
+                <TextBlock
+                    FontSize="28"
+                    HorizontalAlignment="Center"
+                    FontWeight="Bold"
+                    Foreground="#FFFFFF"
+                    Text="Library Management System (LMS)" />
+                <TextBlock
+                    FontSize="18"
+                    HorizontalAlignment="Center"
+                    Foreground="#B7FFFFFF"
+                    Text="Sadjad Uni." />
+            </StackPanel>
             <TextBlock
                 Margin="12"
                 HorizontalAlignment="Right"
@@ -76,54 +98,37 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <ScrollViewer
-                HorizontalScrollBarVisibility="Visible" 
-                VerticalScrollBarVisibility="Disabled">
-                <ListView
-                    x:Name="PassageList"
-                    SelectedIndex="0" d:ItemsSource="{d:SampleData ItemCount=7}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <Image
-                                    VerticalAlignment="Center"
-                                    MaxHeight="200"
-                                    RenderOptions.BitmapScalingMode="HighQuality"
-                                    Source="pack://application:,,,/Resources/LMS Logo.png" />
-                                <TextBlock
-                                    Grid.Row="0"
-                                    FontSize="16"
-                                    FontWeight="Bold"
-                                    Text="کتابخانه مرکزی تهران" />
-                                <TextBlock
-                                    Grid.Row="0"
-                                    FontSize="12"
-                                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
-                                    Text="Library" />
-                                <ui:Rating
-                                    Margin="0,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    FontSize="14"
-                                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
-                                    Value="4" />
-                                <TextBlock
-                                    Grid.Row="0"
-                                    FontSize="12"
-                                    FontWeight="Bold"
-                                    Text="شعبه فعال" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ui:VirtualizingWrapPanel
-                                Orientation="Horizontal"
-                                SpacingMode="Uniform"
-                                StretchItems="False" />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                </ListView>
-            </ScrollViewer>
+            <ListView
+                x:Name="LibraryBranches"
+                SelectedIndex="0"
+                ItemsSource="{Binding ViewModel.LibraryBranchesItemCollection}"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ScrollViewer.VerticalScrollBarVisibility="Disabled">
+
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel MaxWidth="300">
+                            <Image
+                                VerticalAlignment="Center"
+                                MinHeight="200"
+                                MaxHeight="200"
+                                RenderOptions.BitmapScalingMode="HighQuality"
+                                Source="{Binding ImageSource}" />
+                            <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding BranchName}" />
+                            <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="Library" />
+                            <ui:Rating FontSize="14" Foreground="{DynamicResource TextFillColorTertiaryBrush}" HorizontalAlignment="Left" Value="4" />
+                            <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding Address}" />
+                            <TextBlock FontSize="12" FontWeight="Light" Text="{Binding PhoneNumber}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </Grid>
 </ui:UiPage>

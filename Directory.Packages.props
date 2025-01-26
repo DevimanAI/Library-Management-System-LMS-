@@ -8,6 +8,7 @@
     <PackageVersion Include="DevExpress.Win.Design" Version="24.2.3" />
     <PackageVersion Include="devexpress.wpf.controls" Version="24.2.3" />
     <PackageVersion Include="devexpress.wpf.grid.core" Version="24.2.3" />
+    <PackageVersion Include="devexpress.wpf.layoutcontrol" Version="24.2.3" />
     <PackageVersion Include="EntityFramework" Version="6.4.4" />
     <PackageVersion Include="ExcelDataReader" Version="3.6.0" />
     <PackageVersion Include="ExcelDataReader.DataSet" Version="3.6.0" />

@@ -1,0 +1,62 @@
+<ui:UiPage
+    x:Class="Wpf.Ui.Demo.Views.Pages.BorrowPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
+    Title="واگذاری کتاب"
+    FlowDirection="RightToLeft"
+    d:DesignHeight="900"
+    d:DesignWidth="1280"
+    Background="{ui:ThemeResource ApplicationBackgroundBrush}"
+    Scrollable="True"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Border Background="White" Padding="20" CornerRadius="10" 
+            Margin="20" BorderBrush="Gray" BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Borrow -->
+                <StackPanel Grid.Row="1" Margin="100 0 100 0">
+                    <dxe:ComboBoxEdit Name="BorrowMember" Label="عضو"  DisplayMember="FullName" />
+                    <dxe:ComboBoxEdit Name="BorrowResource" Label="کتاب" DisplayMember="Title" />
+                    <dxe:DateEdit Name="BorrowDatePicker" Label="تاریخ واگذاری"/>
+                    <dxe:DateEdit Name="DueDatePicker" Label="تاریخ بازگشت"/>
+                </StackPanel>
+
+                <!-- History -->
+                <dxg:GridControl Name="BorrowHistory" Grid.Row="2" Margin="100 0 100 0" MaxHeight="1000">
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn FieldName="MemberID" Header="شناسه عضو" Width="100" ReadOnly="True"/>
+                        <dxg:GridColumn FieldName="MemberName" Header="عضو" Width="150" ReadOnly="True"/>
+                        <dxg:GridColumn FieldName="ResourceID" Header="شناسه کتاب" Width="100" ReadOnly="True"/>
+                        <dxg:GridColumn FieldName="ResourceTitle" Header="کتاب" Width="200" ReadOnly="True"/>
+                        <dxg:GridColumn FieldName="BorrowDate" Header="تاریخ واگذاری" Width="120" ReadOnly="True"/>
+                        <dxg:GridColumn FieldName="DueDate" Header="تاریخ بازگشت" Width="120" ReadOnly="True"/>
+                        <dxg:GridColumn FieldName="ReturnDate" Header="تاریخ تحویل" Width="150" ReadOnly="True"/>
+                    </dxg:GridControl.Columns>
+                </dxg:GridControl>
+
+                <!-- Footer -->
+                <StackPanel Orientation="Horizontal" Grid.Row="3" 
+                        HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <ui:Button Name="ConfirmBorrow" Appearance="Success" Content="واگذاری" Icon="BookClock24" Width="100" Margin="5" Click="ConfirmBorrow_Click"/>
+                    <ui:Button Name="ReturnBorrow" Appearance="Caution" Content="برگشت" Icon="BookArrowClockwise24" Width="100" Margin="5" Click="ReturnBorrow_Click"/>
+                    <ui:Button Name="ClearFields" Appearance="Light" Content="پاک کردن فیلدها" Icon="Delete24" Margin="5" Click="ClearFields_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</ui:UiPage>

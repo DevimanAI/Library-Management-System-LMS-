@@ -40,17 +40,6 @@ public class CRUDViewModel : ObservableObject
         }
     }
 
-    private Members _selectedEntity;
-    public Members SelectedEntity
-    {
-        get => _selectedEntity;
-        set
-        {
-            _selectedEntity = value;
-            OnPropertyChanged(nameof(SelectedEntity));
-        }
-    }
-
     public void OnNavigatedTo()
     {
         if (!_dataInitialized)
@@ -58,7 +47,7 @@ public class CRUDViewModel : ObservableObject
 
         System.Diagnostics.Debug.WriteLine(
             $"INFO | {typeof(DashboardViewModel)} navigated",
-            "Tiva.Gate.App"
+            "LMS.CRM.App"
         );
     }
 
@@ -66,7 +55,7 @@ public class CRUDViewModel : ObservableObject
     {
         System.Diagnostics.Debug.WriteLine(
             $"INFO | {typeof(DashboardViewModel)} navigated",
-            "Tiva.Gate.App"
+            "LMS.CRM.App"
         );
     }
 

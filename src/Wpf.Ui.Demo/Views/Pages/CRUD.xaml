@@ -18,126 +18,124 @@
     d:DesignWidth="1280"
     FlowDirection="RightToLeft"
     Loaded="OnLoaded"
-    Scrollable="true"
     Unloaded="OnUnloaded"
+    Scrollable="true"
     mc:Ignorable="d">
 
-    <Grid Name="MainPanelGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height=".05*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid>
+        <Grid Name="MainPanelGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".05*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <!-- Top Action Buttons -->
-        <StackPanel Orientation="Horizontal">
-            <ui:Button 
-                Name="ShowAddPanel"
-                Appearance="Primary"
-                FontSize="16"
-                Margin="5"
-                Icon="PersonAdd24"
-                ToolTip="افزودن رکورد"
-                Click="ShowAddPanel_Click"/>
-            <ui:Button 
-                Name="ShowEditPanel"
-                Appearance="Primary"
-                FontSize="16"
-                Margin="5"
-                Icon="Edit24"
-                ToolTip="ویرایش اطلاعات"
-                Click="ShowEditPanel_Click"/>
-            <Separator/>
-            <ui:Button 
-                Name="ShowFilterPanel"
-                Appearance="Info"
-                FontSize="16"
-                Margin="5"
-                Icon="Filter24"
-                ToolTip="اعمال فیلتر"
-                Click="ShowFilterPanel_Click"/>
-            <Separator/>
-            <ui:Button 
-                Name="ExportExcel"
-                Appearance="Secondary"
-                FontSize="16"
-                Margin="5"
-                HorizontalAlignment="Stretch"
-                Icon="DocumentSave24"
-                ToolTip="ذخیره گزارش (.csv)" />
-            <ui:Button 
-                Name="ImportExcel"
-                Appearance="Secondary"
-                FontSize="16"
-                Margin="5"
-                IsEnabled="True"
-                HorizontalAlignment="Stretch"
-                Icon="DocumentDatabase24"
-                ToolTip="ذخیره اطلاعات در پایگاه داده" />
-            <Separator/>
-        </StackPanel>
+            <!-- Top Action Buttons -->
+            <StackPanel Orientation="Horizontal">
+                <ui:Button 
+                    Name="ShowAddPanel"
+                    Appearance="Primary"
+                    FontSize="16"
+                    Margin="5"
+                    Icon="PersonAdd24"
+                    ToolTip="افزودن رکورد"
+                    Click="ShowAddPanel_Click"/>
+                <ui:Button 
+                    Name="ShowEditPanel"
+                    Appearance="Primary"
+                    FontSize="16"
+                    Margin="5"
+                    Icon="Edit24"
+                    ToolTip="ویرایش اطلاعات"
+                    Click="ShowEditPanel_Click"/>
+                <Separator/>
+                <ui:Button 
+                    Name="ShowFilterPanel"
+                    Appearance="Info"
+                    FontSize="16"
+                    Margin="5"
+                    Icon="Filter24"
+                    ToolTip="اعمال فیلتر"
+                    Click="ShowFilterPanel_Click"/>
+                <Separator/>
+                <ui:Button 
+                    Name="ExportExcel"
+                    Appearance="Secondary"
+                    FontSize="16"
+                    Margin="5"
+                    HorizontalAlignment="Stretch"
+                    Icon="DocumentSave24"
+                    ToolTip="ذخیره گزارش (.csv)" />
+                <ui:Button 
+                    Name="ImportExcel"
+                    Appearance="Secondary"
+                    FontSize="16"
+                    Margin="5"
+                    IsEnabled="True"
+                    HorizontalAlignment="Stretch"
+                    Icon="DocumentDatabase24"
+                    ToolTip="ذخیره اطلاعات در پایگاه داده" />
+                <Separator/>
+            </StackPanel>
 
-        <!-- Main DataGrid -->
-        <ui:InfoBar Grid.Row="1" Name="NotificationBar" IsOpen="False"/>
-        <dxg:GridControl 
-            Name="gridControl"
-            Grid.Row="2"
-            MaxHeight="1000"
-            ShowBorder="False"
-            AutoGenerateColumns="RemoveOld"
-            EnableSmartColumnsGeneration="True"
-            ItemsSource="{Binding Entities}"
-            SelectedItem="{Binding SelectedEntity}">
-            <dxg:GridControl.View>
-                <dxg:TableView 
-                    AllowEditing="True"
-                    NewItemRowPosition="Top"
-                    ShowGroupPanel="False"
-                    ValidateRow="TableView_ValidateRow"
-                    ValidateRowDeletion="TableView_ValidateRowDeletion"
-                    RowUpdated="TableView_RowUpdated" />
-            </dxg:GridControl.View>
+            <!-- Main DataGrid -->
+            <ui:InfoBar Grid.Row="1" Name="NotificationBar" IsOpen="False"/>
+            <dxg:GridControl 
+                Name="gridControl"
+                Grid.Row="2"
+                MaxHeight="1000"
+                ShowBorder="False"
+                AutoGenerateColumns="RemoveOld"
+                EnableSmartColumnsGeneration="True"
+                ItemsSource="{Binding Entities}"
+                SelectedItem="{Binding SelectedEntity}">
+                <dxg:GridControl.View>
+                    <dxg:TableView 
+                        AllowEditing="True"
+                        NewItemRowPosition="Top"
+                        ShowGroupPanel="False"
+                        ValidateRow="TableView_ValidateRow"
+                        ValidateRowDeletion="TableView_ValidateRowDeletion"
+                        RowUpdated="TableView_RowUpdated" />
+                </dxg:GridControl.View>
 
-            <!--<dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="NationalCode" Header="کد ملی"/>
-                <dxg:GridColumn FieldName="FirstName" Header="نام"/>
-                <dxg:GridColumn FieldName="LastName" Header="نام خانوادگی"/>
-                <dxg:GridColumn FieldName="StartDate" Header="تاریخ شروع"/>
-                <dxg:GridColumn FieldName="ExpiryDate" Header="تاریخ انقضا"/>
-                <dxg:GridColumn FieldName="MaxBorrowCount" Header="حداکثر تعداد امانت"/>
-                <dxg:GridColumn FieldName="BirthDate" Header="تاریخ تولد"/>
-                <dxg:GridColumn FieldName="Address" Header="آدرس"/>
-                <dxg:GridColumn FieldName="PhoneNumber" Header="شماره تلفن"/>
-                <dxg:GridColumn FieldName="PostCode" Header="کد پستی"/>
-                <dxg:GridColumn FieldName="FatherName" Header="نام پدر"/>
-                <dxg:GridColumn FieldName="Debt" Header="بدهی"/>
-                <dxg:GridColumn FieldName="Status" Header="وضعیت"/>
-            </dxg:GridControl.Columns>-->
-        </dxg:GridControl>
+                <!--<dxg:GridControl.Columns>
+                    <dxg:GridColumn FieldName="NationalCode" Header="کد ملی"/>
+                    <dxg:GridColumn FieldName="FirstName" Header="نام"/>
+                    <dxg:GridColumn FieldName="LastName" Header="نام خانوادگی"/>
+                    <dxg:GridColumn FieldName="StartDate" Header="تاریخ شروع"/>
+                    <dxg:GridColumn FieldName="ExpiryDate" Header="تاریخ انقضا"/>
+                    <dxg:GridColumn FieldName="MaxBorrowCount" Header="حداکثر تعداد امانت"/>
+                    <dxg:GridColumn FieldName="BirthDate" Header="تاریخ تولد"/>
+                    <dxg:GridColumn FieldName="Address" Header="آدرس"/>
+                    <dxg:GridColumn FieldName="PhoneNumber" Header="شماره تلفن"/>
+                    <dxg:GridColumn FieldName="PostCode" Header="کد پستی"/>
+                    <dxg:GridColumn FieldName="FatherName" Header="نام پدر"/>
+                    <dxg:GridColumn FieldName="Debt" Header="بدهی"/>
+                    <dxg:GridColumn FieldName="Status" Header="وضعیت"/>
+                </dxg:GridControl.Columns>-->
+            </dxg:GridControl>
 
-        <!-- Progress Ring -->
-        <ui:ProgressRing 
-            x:Name="LoadingRing"
-            IsIndeterminate="True" 
-            Grid.Row="1"
-            Visibility="Collapsed"/>
+            <!-- Progress Ring -->
+            <ui:ProgressRing 
+                x:Name="LoadingRing"
+                IsIndeterminate="True" 
+                Grid.Row="1"
+                Visibility="Collapsed"/>
+
+        </Grid>
 
         <!-- Edit Panel -->
         <Border 
             Name="EditPanel"
             Background="#AA000000"
             Visibility="Collapsed"
-            Grid.RowSpan="3"
-            Margin="0,100,0,100"
+            Margin="0,200,0,200"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch">
+            VerticalAlignment="Top">
             <Grid Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -145,6 +143,8 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
+
+                <!-- Header -->
                 <TextBlock 
                     Text="ویرایش اطلاعات"
                     FontSize="20"
@@ -153,41 +153,78 @@
                     HorizontalAlignment="Center"
                     Margin="0,0,0,20"/>
 
-                <!-- Editable Fields -->
-                <dxe:TextEdit Grid.Row="1" Grid.Column="0" Name="EditNationalCode" Label="کد ملی"/>
-                <dxe:TextEdit Grid.Row="1" Grid.Column="1" Name="EditFirstName" Label="نام"/>
-                <dxe:TextEdit Grid.Row="2" Grid.Column="0" Name="EditLastName" Label="نام خانوادگی"/>
-                <dxe:DateEdit Grid.Row="2" Grid.Column="1" Name="EditBirthDate" Label="تاریخ تولد"/>
-                <dxe:TextEdit Grid.Row="3" Grid.Column="0" Name="EditAddress" Label="آدرس"/>
-                <dxe:TextEdit Grid.Row="3" Grid.Column="1" Name="EditPhoneNumber" Label="شماره تلفن"/>
-                <dxe:TextEdit Grid.Row="4" Grid.Column="0" Name="EditPostCode" Label="کد پستی"/>
-                <dxe:TextEdit Grid.Row="4" Grid.Column="1" Name="EditFatherName" Label="نام پدر"/>
-                <dxe:SpinEdit Grid.Row="5" Grid.Column="0" Name="EditDebt" Label="بدهی" DisplayFormatString="C2"/>
-                <dxe:ComboBoxEdit Grid.Row="5" Grid.Column="1" Name="EditStatus" Label="وضعیت"/>
+                <!-- Members -->
+                <Grid Grid.Row="1" Grid.ColumnSpan="2" Visibility="Collapsed" Name="MemberFields">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="10 0 0 0">
+                        <dxe:TextEdit Name="EditNationalCode" Label="کد ملی"/>
+                        <dxe:TextEdit Name="EditFirstName" Label="نام"/>
+                        <dxe:TextEdit Name="EditLastName" Label="نام خانوادگی"/>
+                        <dxe:DateEdit Name="EditBirthDate" Label="تاریخ تولد"/>
+                        <dxe:TextEdit Name="EditFatherName" Label="نام پدر"/>
+                        <dxe:TextEdit Name="EditPhoneNumber" Label="شماره تلفن"/>
+                        <dxe:TextEdit Name="EditAddress" Label="آدرس"/>
+                        <dxe:TextEdit Name="EditPostCode" Label="کد پستی"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="0 0 10 0">
+                        <dxe:DateEdit Name="EditMembershipStart" Label="تاریخ عضویت"/>
+                        <dxe:DateEdit Name="EditMembershipEnd" Label="پایان عضویت"/>
+                        <dxe:SpinEdit Name="EditDebt" Label="بدهی" DisplayFormatString="C2" />
+                        <dxe:ComboBoxEdit Name="EditStatus" Label="وضعیت"/>
+                        <dxe:SpinEdit Name="EditMaxBorrowCount" Label="حداکثر امانت"/>
+                    </StackPanel>
+                </Grid>
 
-                <!-- Save and Cancel Buttons -->
-                <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <Button Name="SaveEdit" Content="ذخیره" Width="100" Margin="5" Click="SaveEdit_Click"/>
-                    <Button Name="CancelEdit" Content="لغو" Width="100" Margin="5" Click="CancelEdit_Click"/>
+                <!-- Resources -->
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Visibility="Collapsed" Name="ResourceFields">
+                    <dxe:ComboBoxEdit Name="EditCategory" Label="دسته‌بندی"/>
+                    <dxe:TextEdit Name="EditResourceName" Label="نام"/>
+                    <dxe:TextEdit Name="EditAuthor" Label="نویسنده"/>
+                    <dxe:TextEdit Name="EditPublisher" Label="ناشر"/>
+                    <dxe:SpinEdit Name="EditPublishYear" Label="سال انتشار"/>
+                    <dxe:TextEdit Name="EditISBN" Label="شابک"/>
+                    <dxe:SpinEdit Name="EditQuantity" Label="تعداد کل"/>
+                    <dxe:SpinEdit Name="EditAvailableCopies" Label="نسخ موجود"/>
+                </StackPanel>
+
+                <!-- Reservations -->
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Visibility="Collapsed" Name="ReservationFields">
+                    <dxe:SpinEdit Name="EditMemberID" Label="کد عضویت"/>
+                    <dxe:SpinEdit Name="EditResourceID" Label="کد منبع"/>
+                    <dxe:DateEdit Name="EditReservationDate" Label="تاریخ رزرو"/>
+                    <dxe:ComboBoxEdit Name="ReserveEditStatus" Label="وضعیت"/>
+                </StackPanel>
+
+                <!-- LibraryBranches -->
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Visibility="Collapsed" Name="LibraryBranchesFields">
+                    <dxe:TextEdit Name="EditBranchName" Label="نام شعبه"/>
+                    <dxe:TextEdit Name="EditBranchAddress" Label="آدرس"/>
+                    <dxe:TextEdit Name="EditBranchPhoneNum" Label="شماره تلفن"/>
+                    <dxe:ImageEdit Name="EditBranchImage" MaxHeight="500"/>
+                </StackPanel>
+
+                <!-- Footer -->
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <ui:Button Name="SaveEdit" Appearance="Success" Content="ذخیره" Width="100" Margin="5" Click="SaveEdit_Click"/>
+                    <ui:Button Name="CancelEdit" Appearance="Light" Content="لغو" Width="100" Margin="5" Click="CancelEdit_Click"/>
                 </StackPanel>
             </Grid>
         </Border>
 
-        <!-- Filter Panel -->
         <Border 
             Name="FilterPanel"
             Background="#AA000000"
             Visibility="Collapsed"
-            Grid.RowSpan="3"
-            Margin="0,100,0,100"
+            Margin="0,200,0,200"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch">
+            VerticalAlignment="Top">
             <Grid Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -195,6 +232,7 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
+
                 <TextBlock 
                     Text="فیلتر کردن اطلاعات"
                     FontSize="20"
@@ -203,18 +241,44 @@
                     HorizontalAlignment="Center"
                     Margin="0,0,0,20"/>
 
-                <!-- Filter Fields -->
-                <dxe:TextEdit Grid.Row="1" Grid.Column="0" Name="FilterNationalCode" Label="کد ملی"/>
-                <dxe:TextEdit Grid.Row="1" Grid.Column="1" Name="FilterFirstName" Label="نام"/>
-                <dxe:TextEdit Grid.Row="2" Grid.Column="0" Name="FilterLastName" Label="نام خانوادگی"/>
-                <dxe:DateEdit Grid.Row="2" Grid.Column="1" Name="FilterStartDate" Label="تاریخ شروع"/>
-                <dxe:DateEdit Grid.Row="3" Grid.Column="0" Name="FilterExpiryDate" Label="تاریخ انقضا"/>
-                <dxe:ComboBoxEdit Grid.Row="3" Grid.Column="1" Name="FilterStatus" Label="وضعیت"/>
+                <!-- Members -->
+                <StackPanel Name="MemberFilters" Visibility="Collapsed" Grid.Row="1" Grid.ColumnSpan="2">
+                    <dxe:TextEdit Grid.Column="0" Name="FilterFirstName" Label="نام"/>
+                    <dxe:TextEdit Grid.Column="1" Name="FilterLastName" Label="نام خانوادگی"/>
+                    <dxe:TextEdit Grid.Column="0" Name="FilterNationalCode" Label="کد ملی"/>
+                </StackPanel>
 
-                <!-- Apply and Cancel Buttons -->
-                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <Button Name="ApplyFilter" Content="اعمال" Width="100" Margin="5" Click="ApplyFilter_Click"/>
-                    <Button Name="CancelFilter" Content="لغو" Width="100" Margin="5" Click="CancelFilter_Click"/>
+                <!-- Resources -->
+                <StackPanel Name="ResourceFilters" Visibility="Collapsed" Grid.Row="1" Grid.ColumnSpan="2">
+                    <dxe:TextEdit Grid.Column="0" Name="FilterResourceName" Label="نام منبع"/>
+                    <dxe:ComboBoxEdit Grid.Column="1" Name="FilterCategory" Label="دسته‌بندی"/>
+                    <dxe:TextEdit Grid.Column="0" Name="FilterAuthor" Label="نویسنده"/>
+                    <dxe:TextEdit Grid.Column="1" Name="FilterPublisher" Label="ناشر"/>
+                    <dxe:TextEdit Grid.Column="0" Name="FilterPublishYear" Label="سال انتشار"/>
+                    <dxe:TextEdit Grid.Column="1" Name="FilterISBN" Label="شابک"/>
+                    <dxe:CheckEdit Grid.Column="0" Name="FilterAvailable" Content="فقط منابع موجود"/>
+                </StackPanel>
+
+                <!-- Reservations -->
+                <StackPanel Name="ReservationFilters" Visibility="Collapsed" Grid.Row="1" Grid.ColumnSpan="2">
+                    <dxe:DateEdit Grid.Column="0" Name="FilterStartDate" Label="تاریخ شروع"/>
+                    <dxe:DateEdit Grid.Column="1" Name="FilterExpiryDate" Label="تاریخ انقضا"/>
+                    <dxe:ComboBoxEdit Grid.Column="0" Name="FilterStatus" Label="وضعیت"/>
+                    <dxe:TextEdit Grid.Column="1" Name="FilterMemberID" Label="شناسه عضو"/>
+                    <dxe:TextEdit Grid.Column="0" Name="FilterResourceID" Label="شناسه منبع"/>
+                </StackPanel>
+
+                <!-- LibraryBranches -->
+                <StackPanel Name="LibraryBranchesFilters" Grid.Row="1" Grid.ColumnSpan="2" Visibility="Collapsed">
+                    <dxe:TextEdit Name="FilterBranchName" Label="نام شعبه"/>
+                    <dxe:TextEdit Name="FilterBranchAddress" Label="آدرس"/>
+                    <dxe:TextEdit Name="FilterBranchPhoneNum" Label="شماره تلفن"/>
+                </StackPanel>
+
+                <!-- Footer -->
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <ui:Button Name="ApplyFilter" Appearance="Info" Content="اعمال" Width="100" Margin="5" Click="ApplyFilter_Click"/>
+                    <ui:Button Name="CancelFilter" Appearance="Light" Content="لغو" Width="100" Margin="5" Click="CancelFilter_Click"/>
                 </StackPanel>
             </Grid>
         </Border>

@@ -26,6 +26,13 @@ public class DashboardViewModel : ObservableObject, INavigationAware
 
     public ICommand NavigateCommand => _navigateCommand ??= new RelayCommand<string>(OnNavigate);
 
+    private IEnumerable<LibraryBranches> _libraryBranchesItemCollection = new LibraryBranches[] { };
+    public IEnumerable<LibraryBranches> LibraryBranchesItemCollection
+    {
+        get => _libraryBranchesItemCollection;
+        set => SetProperty(ref _libraryBranchesItemCollection, value);
+    }
+
     public ICommand OpenWindowCommand =>
         _openWindowCommand ??= new RelayCommand<string>(OnOpenWindow);
 
@@ -42,7 +49,7 @@ public class DashboardViewModel : ObservableObject, INavigationAware
     {
         System.Diagnostics.Debug.WriteLine(
             $"INFO | {typeof(DashboardViewModel)} navigated",
-            "Tiva.Gate.App"
+            "LMS.CRM"
         );
     }
 
@@ -50,7 +57,7 @@ public class DashboardViewModel : ObservableObject, INavigationAware
     {
         System.Diagnostics.Debug.WriteLine(
             $"INFO | {typeof(DashboardViewModel)} navigated",
-            "Tiva.Gate.App"
+            "LMS.CRM"
         );
     }
 
@@ -58,24 +65,24 @@ public class DashboardViewModel : ObservableObject, INavigationAware
     {
         switch (parameter)
         {
-            case "navigate_to_licenseControl":
-                return;
+            //case "navigate_to_licenseControl":
+            //    return;
 
-            case "navigate_to_usersInfo":
-                return;
+            //case "navigate_to_usersInfo":
+            //    return;
 
-            case "navigate_to_CameraStreamViewer":
-                return;
+            //case "navigate_to_CameraStreamViewer":
+            //    return;
 
-            case "navigate_to_Data":
-                _navigationService.Navigate(typeof(Views.Pages.Data));
-                return;
+            //case "navigate_to_Data":
+            //    _navigationService.Navigate(typeof(Views.Pages.Data));
+            //    return;
 
-            case "navigate_to_AccessCheck":
-                return;
+            //case "navigate_to_AccessCheck":
+            //    return;
 
-            case "navigate_to_BasicData":
-                return;
+            //case "navigate_to_BasicData":
+            //    return;
         }
     }
 
@@ -83,21 +90,21 @@ public class DashboardViewModel : ObservableObject, INavigationAware
     {
         switch (parameter)
         {
-            case "open_window_store":
-                _testWindowService.Show<Views.Windows.StoreWindow>();
-                return;
+            //case "open_window_store":
+            //    _testWindowService.Show<Views.Windows.StoreWindow>();
+            //    return;
 
-            case "open_window_manager":
-                _testWindowService.Show<Views.Windows.TaskManagerWindow>();
-                return;
+            //case "open_window_manager":
+            //    _testWindowService.Show<Views.Windows.TaskManagerWindow>();
+            //    return;
 
-            case "open_window_editor":
-                _testWindowService.Show<Views.Windows.EditorWindow>();
-                return;
+            //case "open_window_editor":
+            //    _testWindowService.Show<Views.Windows.EditorWindow>();
+            //    return;
 
-            case "open_window_experimental":
-                _testWindowService.Show<Views.Windows.ExperimentalWindow>();
-                return;
+            //case "open_window_experimental":
+            //    _testWindowService.Show<Views.Windows.ExperimentalWindow>();
+            //    return;
         }
     }
 }

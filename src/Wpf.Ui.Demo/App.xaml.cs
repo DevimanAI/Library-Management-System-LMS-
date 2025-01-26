@@ -88,6 +88,7 @@ public partial class App
                 services.AddScoped<ButtonsViewModel>();
 
                 services.AddScoped<Views.Pages.CRUD>();
+                services.AddScoped<Views.Pages.BorrowPage>();
                 services.AddScoped<CRUDViewModel>();
                 services.AddScoped<Views.Pages.Data>();
                 services.AddScoped<DataViewModel>();

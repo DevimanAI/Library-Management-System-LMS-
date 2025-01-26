@@ -4,6 +4,9 @@
 // All Rights Reserved.
 
 using DocumentFormat.OpenXml.CustomProperties;
+using LMS.CRM.Core;
+using LMS.CRM.Core.Data;
+using System;
 using System.Collections.Generic;
 using Wpf.Ui.Common.Interfaces;
 using Wpf.Ui.Demo.ViewModels;
@@ -20,7 +23,22 @@ public partial class Dashboard : INavigableView<DashboardViewModel>
     public Dashboard(DashboardViewModel viewModel)
     {
         ViewModel = viewModel;
-        
+
         InitializeComponent();
+
+        GetDataAsync();
+    }
+
+    private void GetDataAsync()
+    {
+        try
+        {
+            var libraryBranches = AppDbContext.FetchLibraryBranches();
+            ViewModel.LibraryBranchesItemCollection = libraryBranches;
+        }
+        catch (Exception ex)
+        {
+            Logger.SaveLog(ex, nameof(GetDataAsync), Logger.LogLevel.Error);
+        }
     }
 }

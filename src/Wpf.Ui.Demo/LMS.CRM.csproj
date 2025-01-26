@@ -28,6 +28,7 @@
     <PackageReference Include="DevExpress.Win.Design" />
     <PackageReference Include="devexpress.wpf.controls" />
     <PackageReference Include="devexpress.wpf.grid.core" />
+    <PackageReference Include="devexpress.wpf.layoutcontrol" />
     <PackageReference Include="EntityFramework" />
     <PackageReference Include="ExcelDataReader" />
     <PackageReference Include="ExcelDataReader.DataSet" />
@@ -50,7 +51,6 @@
   <ItemGroup>
     <None Remove="Resources\AccessKey.png" />
     <None Remove="Resources\DDORes_2169.ico" />
-    <None Remove="Resources\LMS - Header.gif" />
     <None Remove="Resources\LMS Dashboard.gif" />
     <None Remove="Resources\LMS Logo.ico" />
     <None Remove="Resources\LMS Logo.png" />
@@ -104,7 +104,6 @@
 
   <ItemGroup>
     <Resource Include="Resources\AccessKey.png" />
-    <Resource Include="Resources\LMS - Header.gif" />
     <Resource Include="Resources\LMS Dashboard.gif" />
     <Resource Include="Resources\LMS Logo.ico" />
     <Resource Include="Resources\LMS Logo.png" />

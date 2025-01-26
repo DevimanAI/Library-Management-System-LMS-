@@ -15,6 +15,9 @@ using DocumentFormat.OpenXml.Bibliography;
 using System.Windows.Forms;
 using DocumentFormat.OpenXml.EMMA;
 using DocumentFormat.OpenXml.ExtendedProperties;
+using System.IO;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace LMS.CRM.Core.Data;
 public class Users
@@ -102,17 +105,17 @@ public class Reservations
 
     [Required]
     [ForeignKey("Member")]
-    public int MemberID { get; set; }
+    public int FK_MemberID { get; set; }
 
     [Required]
     [ForeignKey("Resource")]
-    public int ResourceID { get; set; }
+    public int FK_ResourceID { get; set; }
 
     [Required]
     public DateTime ReservationDate { get; set; }
 
     [StringLength(10)]
-    public string Status { get; set; } = "Pending";
+    public string Status { get; set; } = "منتظر";
 
     public Members Member { get; set; }
     public Resources Resource { get; set; }
@@ -162,5 +165,49 @@ public class LibraryBranches
     [DataType(DataType.PhoneNumber)]
     public string PhoneNumber { get; set; }
 
-    public byte[] BranchImage { get; set; } // Optional: Store branch images if needed
+    public byte[] BranchImage { get; set; }
+    [NotMapped]
+    public ImageSource ImageSource
+    {
+        get => ByteArrayToImageSource(BranchImage);
+        set => BranchImage = ImageSourceToByteArray(value);
+    }
+
+    private static ImageSource ByteArrayToImageSource(byte[] byteArray)
+    {
+        if (byteArray == null || byteArray.Length == 0)
+            return null;
+
+        using (var stream = new MemoryStream(byteArray))
+        {
+            var bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.StreamSource = stream;
+            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+            bitmapImage.EndInit();
+            bitmapImage.Freeze();
+            return bitmapImage;
+        }
+    }
+
+    private static byte[] ImageSourceToByteArray(ImageSource imageSource)
+    {
+        if (imageSource == null)
+            return null;
+
+        byte[] bytes = null;
+        if (imageSource is BitmapSource bitmapSource)
+        {
+            var encoder = new JpegBitmapEncoder(); // Use PNG or BMP if needed
+            encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+
+            using (var stream = new MemoryStream())
+            {
+                encoder.Save(stream);
+                bytes = stream.ToArray();
+            }
+        }
+
+        return bytes;
+    }
 }
