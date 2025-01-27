@@ -106,7 +106,6 @@
                         PageType="{x:Type pages:BorrowPage}" />
                 </ui:NavigationStore.Items>
                 <ui:NavigationStore.Footer>
-                    <!--  A navigation element that does not point to the page can be used as a button.  -->
                     <ui:NavigationItem
                         Click="NavigationButtonTheme_OnClick"
                         Content="تغییر زمینه"
@@ -116,7 +115,6 @@
                         Cache="True"
                         Content="کاربر"
                         Image="pack://application:,,,/Resources/wpfui_full.png" />
-                        <!--PageType="{x:Type pages:UserProfile}"-->
                     <ui:NavigationItem
                         Name="LogOut"
                         Content="خروج کاربر"
@@ -126,7 +124,6 @@
                 </ui:NavigationStore.Footer>
             </ui:NavigationStore>
 
-            <!--  We display our pages inside this element.  -->
             <Border
                 Grid.Column="1"
                 Background="{DynamicResource ControlFillColorDefaultBrush}"
@@ -263,11 +260,7 @@
             </StackPanel>
         </Grid>
 
-        <!--
-        <ui:NavigationView Grid.Row="1" Type="Compact" />
-        -->
 
-        <!--  Dialogue is above all controls except the navigation buttons. So it covers all the content, but allows you to close or move the application.  -->
         <ui:Dialog
             x:Name="RootDialog"
             Title="پیام سیستم"
@@ -277,19 +270,6 @@
             ButtonLeftAppearance="Info"
             ButtonRightVisibility="Collapsed"/>
 
-        <!--
-            For debugging the focus and the keyboard navigation,
-            please make this view visible.
-        -->
-
-        <!--  The title bar contains window navigation elements and some Tray related extras.  -->
-        <!--  You can put additional controls in the header, such as a search bar.  -->
-        <!--  <ui:TitleBar.Header />  -->
-
-        <!--
-            ButtonsForeground="Aqua"
-            Foreground="Red"
-        -->
         <StackPanel>
 
             <ui:TitleBar
@@ -312,22 +292,6 @@
                     TooltipText="LMS CRM">
                         <ui:NotifyIcon.Menu>
                             <ContextMenu>
-                                <!--<ui:MenuItem
-                                Click="TrayMenuItem_OnClick"
-                                Header="Home"
-                                SymbolIcon="Library28"
-                                Tag="home" />
-                            <ui:MenuItem
-                                Click="TrayMenuItem_OnClick"
-                                Header="Save"
-                                SymbolIcon="Save24"
-                                Tag="save" />
-                            <ui:MenuItem
-                                Click="TrayMenuItem_OnClick"
-                                Header="Open"
-                                SymbolIcon="Folder28"
-                                Tag="open" />
-                            <Separator />-->
                                 <ui:MenuItem
                                 Click="TrayMenuItemReload_OnClick"
                                 Header="Reload"

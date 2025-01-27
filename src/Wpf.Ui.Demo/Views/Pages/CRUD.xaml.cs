@@ -53,6 +53,7 @@ using System.Collections.ObjectModel;
 using DevExpress.XtraScheduler.Native;
 using static LMS.CRM.Core.Data.AppDbContext;
 using DocumentFormat.OpenXml.Bibliography;
+using System.Data.Entity.Validation;
 
 namespace Wpf.Ui.Demo.Views.Pages;
 
@@ -694,7 +695,7 @@ public partial class CRUD
                                 PostCode = EditPostCode.Text,
                                 FatherName = EditFatherName.Text,
                                 Debt = (decimal?)EditDebt.Value,
-                                Status = EditStatus.SelectedItem?.ToString(),
+                                Status = EditStatus.EditValue?.ToString(),
                                 StartDate = EditMembershipStart.DateTime,
                                 ExpiryDate = EditMembershipEnd.DateTime,
                                 MaxBorrowCount = (byte?)EditMaxBorrowCount.Value
@@ -708,7 +709,7 @@ public partial class CRUD
                         {
                             // Update only the properties
                             existingResource.Title = EditResourceName.Text;
-                            existingResource.ResourceType = EditCategory.SelectedItem?.ToString();
+                            existingResource.ResourceType = EditCategory.EditValue?.ToString();
                             existingResource.Author = EditAuthor.Text;
                             existingResource.Publisher = EditPublisher.Text;
                             existingResource.PublishYear = EditPublishYear.Text;
@@ -720,7 +721,7 @@ public partial class CRUD
                             context.Resources.Add(new Resources
                             {
                                 Title = EditResourceName.Text,
-                                ResourceType = EditCategory.SelectedItem?.ToString(),
+                                ResourceType = EditCategory.EditValue?.ToString(),
                                 Author = EditAuthor.Text,
                                 Publisher = EditPublisher.Text,
                                 PublishYear = EditPublishYear.Text,
@@ -746,7 +747,7 @@ public partial class CRUD
                                 FK_MemberID = (int)EditMemberID.Value,
                                 FK_ResourceID = (int)EditResourceID.Value,
                                 ReservationDate = EditReservationDate.DateTime,
-                                Status = ReserveEditStatus.SelectedItem?.ToString()
+                                Status = ReserveEditStatus.EditValue?.ToString()
                             });
                         }
                         break;
@@ -780,6 +781,17 @@ public partial class CRUD
             OpenSnackbar("Success", "Data saved successfully.", SymbolRegular.Checkmark24, ControlAppearance.Success);
             CloseEditPanel_Click(sender, e);
             await RefreshDataAsync();
+        }
+        catch (DbEntityValidationException ex)
+        {
+            foreach (var validationErrors in ex.EntityValidationErrors)
+            {
+                foreach (var validationError in validationErrors.ValidationErrors)
+                {
+                    Logger.SaveLog(ex, nameof(SaveEdit_Click), Logger.LogLevel.Error);
+                    OpenSnackbar("Error", $"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}", SymbolRegular.ErrorCircle24, ControlAppearance.Danger);
+                }
+            }
         }
         catch (Exception ex)
         {
