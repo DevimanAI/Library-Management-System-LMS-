@@ -930,4 +930,19 @@ public partial class CRUD
     {
         (sender as Wpf.Ui.Controls.MessageBox)?.Close();
     }
+
+    private void Print_Click(object sender, RoutedEventArgs e)
+    {
+        PrintDialog printDialog = new PrintDialog();
+
+        if (printDialog.ShowDialog() == true)
+        {
+            System.Windows.Size pageSize = new System.Windows.Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight);
+            gridControl.Measure(pageSize);
+            gridControl.Arrange(new Rect(0, 0, pageSize.Width, pageSize.Height));
+
+            printDialog.PrintVisual(gridControl, "چاپ اطلاعات");
+        }
+    }
+
 }

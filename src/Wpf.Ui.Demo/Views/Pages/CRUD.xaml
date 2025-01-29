@@ -76,6 +76,15 @@
                     Icon="DocumentDatabase24"
                     ToolTip="ذخیره اطلاعات در پایگاه داده" />
                 <Separator/>
+                <ui:Button 
+                    Name="Print"
+                    Appearance="Success"
+                    FontSize="16"
+                    Margin="5"
+                    IsEnabled="True"
+                    HorizontalAlignment="Stretch"
+                    Click="Print_Click"
+                    Icon="Print24"/>
             </StackPanel>
 
             <!-- Main DataGrid -->
